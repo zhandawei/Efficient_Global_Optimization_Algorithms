@@ -44,9 +44,9 @@ MATLAB 2016b and above.
 [^4]:  D. Ginsbourger, R. Le Riche, and L. Carraro. Kriging Is Well-Suited to Parallelize Optimization, in Computational Intelligence in Expensive Optimization Problems, Y. Tenne and C.-K. Goh, Editors. 2010, 131-162.
 [^5]:  D. Zhan, J. Qian, and Y. Cheng. Pseudo expected improvement criterion for parallel EGO algorithm. Journal of Global Optimization, 2017. 68(3):  641-662.
 [^6]:  C. Chevalier, and D. Ginsbourger. Fast computation of the multi-points expected improvement with applications in batch selection, in Learning and Intelligent Optimization, G. Nicosia and P. Pardalos, Editors. 2013, 59-69.
-[^7]: D. Zhan, Y. Meng and H. Xing. A Fast Multi-Point Expected Improvement for Parallel Expensive Optimization. IEEE Transactions on Evolutionary Computation, 2022, doi: 10.1109/TEVC.2022.3168060.
+[^7]: D. Zhan, Y. Meng and H. Xing. A fast multi-point expected improvement for parallel expensive optimization. IEEE Transactions on Evolutionary Computation, 2022, doi: 10.1109/TEVC.2022.3168060.
 [^8]:  M. Schonlau. Computer experiments and global optimization. 1997, University of Waterloo.
 [^9]: J. Qian, Y. Cheng, J. zhang, J. Liu, and D. Zhan. A parallel constrained efficient global optimization algorithm for expensive constrained optimization problems. Engineering Optimization, 2021. 53(2): 300-320.
 [^10]: J. Knowles. ParEGO: A hybrid algorithm with on-line landscape approximation for expensive multiobjective optimization problems. IEEE Transactions on Evolutionary Computation, 2006. 10(1): 50-66.
-[^11]: D. Zhan, Y. Cheng, and J. Liu, Expected Improvement Matrix-Based Infill Criteria for Expensive Multiobjective Optimization. IEEE Transactions on Evolutionary Computation, 2017. 21(6): 956-975.
+[^11]: D. Zhan, Y. Cheng, and J. Liu, Expected improvement matrix-based infill criteria for expensive multiobjective optimization. IEEE Transactions on Evolutionary Computation, 2017. 21(6): 956-975.
 
