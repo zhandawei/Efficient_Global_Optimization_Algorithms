@@ -3,12 +3,16 @@ function model = Kriging_Train(sample_x,sample_y,lower_bound,upper_bound,theta0,
 X = (sample_x - lower_bound)./(upper_bound - lower_bound);
 Y = sample_y;
 % optimize the theta values with in [10^a,10^b]
-theta0 = log10(theta0);
-theta_lower = log10(theta_lower);
-theta_upper = log10(theta_upper);
-options = optimoptions('fmincon','Algorithm','sqp','MaxFunctionEvaluations',20*num_vari,'OptimalityTolerance',1E-20,'StepTolerance',1E-20,'Display','off');
-theta = fmincon(@(theta)Concentrated_lnLikelihood(theta,X,Y),theta0,[],[],[],[],theta_lower,theta_upper,[],options);
-theta = 10.^theta;
+if  nargin > 5
+    theta0 = log10(theta0);
+    theta_lower = log10(theta_lower);
+    theta_upper = log10(theta_upper);
+    options = optimoptions('fmincon','Algorithm','sqp','MaxFunctionEvaluations',20*num_vari,'OptimalityTolerance',1E-20,'StepTolerance',1E-20,'Display','off');
+    theta = fmincon(@(theta)Concentrated_lnLikelihood(theta,X,Y),theta0,[],[],[],[],theta_lower,theta_upper,[],options);
+    theta = 10.^theta;
+else
+    theta = theta0;
+end
 % calculate the correlation matrix
 one = ones(n,1);
 temp1 = sum(X.^2.*theta,2)*one';
