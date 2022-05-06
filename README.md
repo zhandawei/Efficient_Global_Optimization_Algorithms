@@ -32,7 +32,7 @@ MATLAB 2016b and above.
 2. **The Expected Improvement Matrix** (*EGO_EIM_Euclidean.m*,*EGO_EIM_Hypervolume.m*,*EGO_EIM_Maximin.m*) [^12].
 
 
-## TO-be_included
+## TO be Included
 1. **Multi-EGO**
 2. **MOEA/D-EGO**
 3. **EGO-EHVI**
