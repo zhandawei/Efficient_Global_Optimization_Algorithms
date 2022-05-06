@@ -5,6 +5,7 @@
 * [Parallel EGO](#Parallel-Efficient-Global-Optimization-algorithms)
 * [Constrained EGO](#Constrained-Efficient-Global-Optimization-algorithms)
 * [Multiobjecitve EGO](#Multiobjective-Efficient-Global-Optimization-algorithms)
+* [To be included](#To-be-included)
 * [References](#References)
 
 
@@ -31,6 +32,10 @@ MATLAB 2016b and above.
 2. **The Expected Improvement Matrix** (*EGO_EIM_Euclidean.m*,*EGO_EIM_Hypervolume.m*,*EGO_EIM_Maximin.m*) [^12].
 
 
+## TO-be_included
+1. **Multi-EGO**
+2. **MOEA/D-EGO**
+3. **EGO-EHVI**
 
 
 
