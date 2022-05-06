@@ -2,28 +2,42 @@
 ## Table of Contents
 * [Requirements](#Requirements)
 * [Standard EGO](#Standard-Efficient-Global-Optimization-algorithm)
-* [Parallel EGO](#Requirements)
-* [Constrained EGO](#Requirements)
-* [Multiobjecitve EGO](#Requirements)
+* [Parallel EGO](#Parallel-Efficient-Global-Optimization-algorithms)
+* [Constrained EGO](#Constrained-Efficient-Global-Optimization-algorithms)
+* [Multiobjecitve EGO](#Multiobjective-Efficient-Global-Optimization-algorithms)
 * [References](#References)
-* 
+
+
 ## Requirements
 MATLAB 2016b and above.
 
 ## Standard Efficient Global Optimization algorithm
-- **EGO_EI.m** is the main file of the standard EGO algorithm. The standard EGO algorithm is implemented according to the paper of Jones et al. (1998)[[1]](#[1]). 
-- For the Kriging modeling, the Gaussian correlation function is used as the corrlation function and the constant mean is used as the trend function. **Kriging_Train.m** is the function for training the Kriging model and **Kriging_Predictor.m** is the function to make predictions. I refered some codes in the book *Engineering design via surrogate modelling: a practical guide*[^2] for the Kriging model. The MATLAB **fmincon** function is used for maximizing the likehihood function to get the estimated hyperparameters when training the Kriging model.
-- The expected improvement function is maximized by a real-coded genetic algorithm[^3].
-
-
+The standard EGO algorithm (**EGO_EI.m**) is implemented according to the paper of Jones et al. (1998) [^1].  For the Kriging modeling, the Gaussian correlation function is used as the corrlation function and the constant mean is used as the trend function. I refered some codes in the book *Engineering design via surrogate modelling: a practical guide* [^2] for the Kriging model. The MATLAB **fmincon** function is used for maximizing the likehihood function to get the estimated hyperparameters when training the Kriging model. The expected improvement function is maximized by a real-coded genetic algorithm [^3].
 
 ## Parallel Efficient Global Optimization algorithms
-Currently, three parallel EGO algorithms have been implemented.
-1. The peseudo expected improvement.
-2. The multipoint expected improvement.
-3. The fast multipoint expected improvement.
+Currently, five parallel EGO algorithms have been implemented. They are
+1. the Kriging Believer approach (**EGO_KB.m**) [^4].
+2. the Constant Liar approach (**EGO_CL.m**) [^4].
+3. the peseudo expected improvement (**EGO_Pseudo_EI.m**) [^5] .
+4. the multipoint expected improvement (**EGO_qEI.m**) [^6].
+5. the fast multipoint expected improvement (**EGO_FqEI.m**) [^7].
+
+## Constrained Efficient Global Optimization algorithms
+
+
+## Multiobjective Efficient Global Optimization algorithms
+
+
+
+
+
 
 ## References
- [1] D. R. Jones, M. Schonlau, and W. J. Welch. Efficient global optimization of expensive black-box functions. Journal of Global Optimization, 1998. 13(4): 455-492.
- A. Forrester and A. Keane. Engineering design via surrogate modelling: a practical guide. 2008, John Wiley & Sons.
- K. Deb. An efficient constraint handling method for genetic algorithms. Computer Methods in Applied Mechanics and Engineering, 2000. 186(2): 311-338.
+[^1] D. R. Jones, M. Schonlau, and W. J. Welch. Efficient global optimization of expensive black-box functions. Journal of Global Optimization, 1998. 13(4): 455-492.
+[^2] A. Forrester and A. Keane. Engineering design via surrogate modelling: a practical guide. 2008, John Wiley & Sons.
+[^3] K. Deb. An efficient constraint handling method for genetic algorithms. Computer Methods in Applied Mechanics and Engineering, 2000. 186(2): 311-338.
+[^4] D. Ginsbourger, R. Le Riche, and L. Carraro. Kriging Is Well-Suited to Parallelize Optimization, in Computational Intelligence in Expensive Optimization Problems, Y. Tenne and C.-K. Goh, Editors. 2010, 131-162.
+[^5] D. Zhan, J. Qian, and Y. Cheng. Pseudo expected improvement criterion for parallel EGO algorithm. Journal of Global Optimization, 2017. 68(3):  641-662.
+[^6] C. Chevalier, and D. Ginsbourger. Fast Computation of the Multi-Points Expected Improvement with Applications in Batch Selection, in Learning and Intelligent Optimization, G. Nicosia and P. Pardalos, Editors. 2013, 59-69.
+
+[7] 
