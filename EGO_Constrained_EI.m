@@ -1,15 +1,3 @@
-% the EGO algorithm using Constrained EI is implemented [1]. The GA [2] is used
-% to maximized to infill criterion.
-% [1] M. Schonlau, Computer experiments and global optimization. 1997, 
-% University of Waterloo.
-% [2] K. Deb. An efficient constraint handling method for genetic
-% algorithms. Computer Methods in Applied Mechanics and Engineering, 2002,
-% 186(2): 311-338.
-% This program is free software; you can redistribute it and/or
-% modify it. This program is distributed in the hope that it will be useful,
-% but WITHOUT ANY WARRANTY; without even the implied warranty of
-% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-%--------------------------------------------------------------------------
 clearvars;close all;
 % settings of the problem
 fun_name = 'Fun_Welded_Beam';

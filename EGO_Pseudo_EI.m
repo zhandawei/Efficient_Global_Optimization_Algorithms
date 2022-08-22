@@ -34,7 +34,7 @@ while evaluation < max_evaluation
         % update point_added
         point_added = infill_x(1:ii,:);
     end
-    % evaluating the candidate with the real function
+    % evaluating the candidate with the real function 
     best_y = feval(fun_name,infill_x);
     % add the new point to design set
     sample_x = [sample_x;infill_x];
