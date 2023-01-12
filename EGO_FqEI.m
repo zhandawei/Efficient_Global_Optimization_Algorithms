@@ -26,7 +26,7 @@ while evaluation < max_evaluation
     kriging_model = Kriging_Train(sample_x,sample_y,lower_bound,upper_bound,1*ones(1,num_vari),0.001*ones(1,num_vari),1000*ones(1,num_vari));
     % maximize the qEI function
     [best_x,max_EI]= Optimizer_GA(@(x)-Infill_FqEI(x,kriging_model,fmin),num_vari*num_q,repmat(lower_bound,1,num_q),repmat(upper_bound,1,num_q),50,100);
-    best_x = reshape(best_x,num_vari,[])';
+    infill_x = reshape(best_x,num_vari,[])';
     % evaluating the candidate with the real function
     infill_y = feval(fun_name,infill_x);
     % add the new point to design set
