@@ -32,15 +32,8 @@ MATLAB 2016b and above.
 ## Multiobjective Efficient Global Optimization algorithms
 1. **The ParEGO (Pareto EGO)** (*ParEGO.m*) [^11].
 2. **The Expected Improvement Matrix** (*EGO_EIM_Euclidean.m*,*EGO_EIM_Hypervolume.m*,*EGO_EIM_Maximin.m*) [^12].
-
-
-## TO be Included
-1. **Multi-EGO**
-2. **MOEA/D-EGO**
-3. **EGO-EHVI**
-
-
-
+3. **The Expected Hypervolume Improvement** (*EGO_EHVI.m*)[^13]. The *EHVI* criterion is calculated using Monte Carlo approximation.
+4. **The MOEA/D-EGO** (*MOEAD_EGO.m*)[^14]. 
 
 ## References
 [^1]: D. R. Jones, M. Schonlau, and W. J. Welch. Efficient global optimization of expensive black-box functions. Journal of Global Optimization, 1998. 13(4): 455-492.
@@ -54,5 +47,6 @@ MATLAB 2016b and above.
 [^9]:  M. Schonlau. Computer experiments and global optimization. 1997, University of Waterloo.
 [^10]: J. Qian, Y. Cheng, J. zhang, J. Liu, and D. Zhan. A parallel constrained efficient global optimization algorithm for expensive constrained optimization problems. Engineering Optimization, 2021. 53(2): 300-320.
 [^11]: J. Knowles. ParEGO: A hybrid algorithm with on-line landscape approximation for expensive multiobjective optimization problems. IEEE Transactions on Evolutionary Computation, 2006. 10(1): 50-66.
-[^12]: D. Zhan, Y. Cheng, and J. Liu, Expected improvement matrix-based infill criteria for expensive multiobjective optimization. IEEE Transactions on Evolutionary Computation, 2017. 21(6): 956-975.
-
+[^12]: D. Zhan, Y. Cheng, and J. Liu. Expected improvement matrix-based infill criteria for expensive multiobjective optimization. IEEE Transactions on Evolutionary Computation, 2017. 21(6): 956-975.
+[^13]: M. T. M. Emmerich, K. C. Giannakoglou, and B. Naujoks. Single- and multiobjective evolutionary optimization assisted by Gaussian random field metamodels. IEEE Transactions on Evolutionary Computation, 2006, 10(4): 421-439.
+[^14]: Q. Zhang, W. Liu, E. Tsang, and B. Virginas. Expensive Multiobjective Optimization by MOEA/D With Gaussian Process Model. IEEE Transactions on Evolutionary Computation, 2010, 14(3): 456-474.
