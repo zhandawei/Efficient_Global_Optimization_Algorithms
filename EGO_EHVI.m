@@ -28,15 +28,15 @@ non_dominated_front = sample_y(index,:);
 non_dominated_front_scaled = sample_y_scaled(index,:);
 hypervolume = Hypervolume(non_dominated_front,ref_point);
 % print the hypervolume information
-fprintf('EGO-EIM-Euclidean on %d-D %s function, iteration: %d, evaluation: %d, hypervolume: %f \n',num_vari,fun_name,iteration,evaluation,hypervolume);
+fprintf('EGO-EHVI on %d-D %s function, iteration: %d, evaluation: %d, hypervolume: %f \n',num_vari,fun_name,iteration,evaluation,hypervolume);
 % beginning of the iteration
 while evaluation < max_evaluation
     % build the kriging model for each objective
     for ii = 1:num_obj
         kriging_obj{ii} = Kriging_Train(sample_x,sample_y_scaled(:,ii),lower_bound,upper_bound,1*ones(1,num_vari),0.001*ones(1,num_vari),1000*ones(1,num_vari));
     end
-    % select updating points using the EIM criteria
-    infill_x = Optimizer_GA(@(x)-Infill_EIM_Euclidean(x,kriging_obj,non_dominated_front_scaled),num_vari,lower_bound,upper_bound,50,100);
+    % select updating points using the EHVI criterion
+    infill_x = Optimizer_GA(@(x)-Infill_EHVI(x,kriging_obj,non_dominated_front_scaled),num_vari,lower_bound,upper_bound,50,100);
     infill_y = feval(fun_name,infill_x, num_obj);
     % add the new points to the design set
     sample_x = [sample_x;infill_x];
@@ -50,6 +50,6 @@ while evaluation < max_evaluation
     non_dominated_front_scaled = sample_y_scaled(index,:);
     hypervolume = Hypervolume(non_dominated_front,ref_point);
     % print the hypervolume information
-    fprintf('EGO-EIM-Euclidean on %d-D %s function, iteration: %d, evaluation: %d, hypervolume: %f\n',num_vari,fun_name,iteration,evaluation,hypervolume);
+    fprintf('EGO-EHVI on %d-D %s function, iteration: %d, evaluation: %d, hypervolume: %f\n',num_vari,fun_name,iteration,evaluation,hypervolume);
 end
 

@@ -26,7 +26,7 @@ end
 weight = UniformPoint(num_weight,num_obj);
 % the intial design points, points sampled all at once
 sample_x = lower_bound + (upper_bound-lower_bound).*lhsdesign(num_initial,num_vari,'criterion','maximin','iterations',1000);
-sample_y = feval(fun_name, sample_x, num_obj);
+sample_y = feval(fun_name,sample_x,num_obj);
 iteration = 0;
 evaluation = size(sample_x,1);
 % calculate the initial hypervolume values and print them on the screen
