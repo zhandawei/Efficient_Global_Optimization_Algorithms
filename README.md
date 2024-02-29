@@ -5,14 +5,12 @@
 * [Parallel EGO](#Parallel-Efficient-Global-Optimization-algorithms)
 * [Constrained EGO](#Constrained-Efficient-Global-Optimization-algorithms)
 * [Multiobjecitve EGO](#Multiobjective-Efficient-Global-Optimization-algorithms)
-* [To be included](#To-be-included)
 * [References](#References)
 
 
 ## Requirements
-Windows system.
-
-MATLAB 2016b and above.
+1. Windows system.
+2. MATLAB 2016b and above.
 
 ## Standard Efficient Global Optimization algorithm
 1. **The standard EGO algorithm** (*EGO_EI.m*) [^1]. For the Kriging modeling, the Gaussian correlation function is used as the corrlation function and the constant mean is used as the trend function. I refered some codes in the book *Engineering design via surrogate modelling: a practical guide* [^2] for the Kriging model. The MATLAB **fmincon** function is used for maximizing the likehihood function to get the estimated hyperparameters when training the Kriging model. The expected improvement function is maximized by a real-coded genetic algorithm [^3].
