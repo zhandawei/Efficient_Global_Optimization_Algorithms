@@ -31,7 +31,7 @@
 1. **The ParEGO (Pareto EGO)** (*ParEGO.m*) [^11].
 2. **The Expected Improvement Matrix** (*EGO_EIM_Euclidean.m*,*EGO_EIM_Hypervolume.m*,*EGO_EIM_Maximin.m*) [^12].
 3. **The Expected Hypervolume Improvement** (*EGO_EHVI.m*)[^13]. The *EHVI* criterion is calculated using Monte Carlo approximation.
-4. **The MOEA/D-EGO** (*MOEAD_EGO.m*)[^14]. 
+4. **The MOEA/D-EGO** (*MOEAD_EGO.m*)[^14]. We use all the samples to train the Kriging models instead of using the fuzzy clusting based modeling method used in the original work[^14].
 
 ## References
 [^1]: D. R. Jones, M. Schonlau, and W. J. Welch. Efficient global optimization of expensive black-box functions. Journal of Global Optimization, 1998. 13(4): 455-492.
