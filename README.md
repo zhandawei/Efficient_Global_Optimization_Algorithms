@@ -31,17 +31,18 @@ The expected improvement function is maximized by a real-coded genetic algorithm
 
 
 ## Parallel Bayesian Optimization Algorithms
-1. **The Kriging Believer Approach** ```Parallel_KB.m``` [^4].
+1. **The Kriging Believer Approach**[^4] ```Parallel_KB.m```
    
-3. **The Constant Liar Approach** (*Parallel_CL.m*) [^4].
-4. 
-5. **The Peseudo Expected Improvement** (*Parallel_PEI.m*) [^5] .
-6. 
-7. **The Multipoint Expected Improvement** (*Parallel_qEI.m*) [^6].
-8. The *qEI* function is coded according the R code in [^7].
-9. 
-10. **The Fast Multipoint Expected Improvement** (*Parallel_FqEI.m*) [^8].
-11. 
+3. **The Constant Liar Approach**[^4] ```Parallel_CL.m```
+
+   
+5. **The Peseudo Expected Improvement**[^5] ```Parallel_PEI.m```  
+   
+7. **The Multipoint Expected Improvement**[^6] ```Parallel_qEI.m``` 
+   The *qEI* function is coded according the R code in [^7].
+   
+10. **The Fast Multipoint Expected Improvement**[^8] ```Parallel_FqEI.m``` 
+    
 
 ## Multiobjective Bayesian Optimization Algorithms
 1. **The ParEGO (Pareto EGO)** (*Multiobjective_ParEGO.m*) [^9].
