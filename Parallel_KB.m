@@ -19,7 +19,7 @@ iteration = 0;
 % the current best solution
 fmin = min(sample_y);
 % print the current information to the screen
-fprintf('EGO-KB on %d-D %s function, iteration: %d, evaluation: %d, current best solution: %f\n',num_vari,fun_name,iteration,evaluation,fmin);
+fprintf('KB on %d-D %s function, iteration: %d, evaluation: %d, current best solution: %f\n',num_vari,fun_name,iteration,evaluation,fmin);
 % the iteration
 while evaluation < max_evaluation
     % build (or rebuild) the initial Kriging model
@@ -32,7 +32,7 @@ while evaluation < max_evaluation
         % use kriging prediction as the real objective
         kriging_model = Kriging_Train([sample_x;infill_x(1:ii,:)],[sample_y;Kriging_Predictor(infill_x(1:ii,:),kriging_model)],lower_bound,upper_bound,kriging_model.theta);
     end
-    % evaluating the candidate with the real function
+    % evaluating the candidates with the real function
     infill_y = feval(fun_name,infill_x);
     % add the new point to design set
     sample_x = [sample_x;infill_x];
@@ -42,7 +42,7 @@ while evaluation < max_evaluation
     iteration = iteration + 1;
     fmin = min(sample_y);
     % print the current information to the screen
-    fprintf('EGO-KB on %d-D %s function, iteration: %d, evaluation: %d, current best solution: %f\n',num_vari,fun_name,iteration,evaluation,fmin);
+    fprintf('KB on %d-D %s function, iteration: %d, evaluation: %d, current best solution: %f\n',num_vari,fun_name,iteration,evaluation,fmin);
 end
 
 
