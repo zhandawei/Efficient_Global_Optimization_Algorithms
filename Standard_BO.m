@@ -17,7 +17,7 @@ iteration = 0;
 % the current best solution
 fmin = min(sample_y);
 % print the current information to the screen
-fprintf('EGO-EI on %d-D %s function, iteration: %d, evaluation: %d, current best solution: %f\n',num_vari,fun_name,iteration,evaluation,fmin);
+fprintf('BO on %d-D %s function, iteration: %d, evaluation: %d, current found minimum: %f\n',num_vari,fun_name,iteration,evaluation,fmin);
 % the iteration
 while evaluation <  max_evaluation
     % build (or rebuild) the initial Kriging model
@@ -34,7 +34,7 @@ while evaluation <  max_evaluation
     iteration = iteration + 1;
     fmin = min(sample_y);
     % print the current information to the screen
-    fprintf('EGO-EI on %d-D %s function, iteration: %d, evaluation: %d, current best solution: %f\n',num_vari,fun_name,iteration,evaluation,fmin);
+    fprintf('BO on %d-D %s function, iteration: %d, evaluation: %d, current found minimum: %f\n',num_vari,fun_name,iteration,evaluation,fmin);
 end
 
 
