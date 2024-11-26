@@ -1,5 +1,5 @@
-# A collection of Bayesian Optimization (also known as Efficient Global Optimization) algorithms
-
+# Matlab implementations of Bayesian Optimization algorithms
+Bayesian Optimization (BO) algorithms, also known as Efficient Global Optimization (EGO) algorithms are widely used to solve expensive optimization problems. I try to make a collection of different Bayesian optimization algorithms that we have proposed and implemented during my research. In these implementations, I try keep the codes as simple as possile.
 
 
 ## Table of Contents
@@ -13,27 +13,27 @@
 
 
 ## Requirements
-1. Windows system.
-2. MATLAB 2016b and above.
+1. **Windows system.** I have not tested other operating systems, but the codes should also work as Matlab is cross-platformed.
+2. **MATLAB 2016b and above**. I used a lot of ```.*``` to multiply vector and matrix. This multiplication uses implicit expansion, which was introduced in MATLAB 2016b.
 
 ## Standard Bayesian Optimization algorithm
-**The standard BO algorithm** (*Standard_BO.m*) [^1].
+**The standard BO algorithm** ```Standard_BO.m``` [^1].
  
 For the Kriging modeling, the Gaussian correlation function is used as the corrlation function and the constant mean is used as the trend function. 
 I refered some codes in the book *Engineering design via surrogate modelling: a practical guide* [^2] for the Kriging model. 
-The MATLAB **fmincon** function is used for maximizing the likehihood function to get the estimated hyperparameters when training the Kriging model. 
+The MATLAB ```fmincon``` function is used for maximizing the likehihood function to get the estimated hyperparameters when training the Kriging model. 
 The expected improvement function is maximized by a real-coded genetic algorithm [^3].
 
 
 ## High-Dimensional Bayesian Optimization Algorithms
-
+1. **The Dropout Approach** ```HD_Dropout.m``` [^4]
 
 
 
 ## Parallel Bayesian Optimization Algorithms
-1. **The Kriging Believer approach** (*Parallel_KB.m*) [^4].
+1. **The Kriging Believer Approach** ```Parallel_KB.m``` [^4].
    
-3. **The Constant Liar approach** (*Parallel_CL.m*) [^4].
+3. **The Constant Liar Approach** (*Parallel_CL.m*) [^4].
 4. 
 5. **The Peseudo Expected Improvement** (*Parallel_PEI.m*) [^5] .
 6. 
@@ -59,6 +59,7 @@ The expected improvement function is maximized by a real-coded genetic algorithm
 [^2]:  A. Forrester and A. Keane. Engineering design via surrogate modelling: a practical guide. 2008, John Wiley & Sons.
 [^3]:  K. Deb. An efficient constraint handling method for genetic algorithms. Computer Methods in Applied Mechanics and Engineering, 2000. 186(2): 311-338.
 [^4]:  D. Ginsbourger, R. Le Riche, and L. Carraro. Kriging Is Well-Suited to Parallelize Optimization, in Computational Intelligence in Expensive Optimization Problems, Y. Tenne and C.-K. Goh, Editors. 2010, 131-162.
+
 [^5]:  D. Zhan, J. Qian, and Y. Cheng. Pseudo expected improvement criterion for parallel EGO algorithm. Journal of Global Optimization, 2017. 68(3):  641-662.
 [^6]:  C. Chevalier, and D. Ginsbourger. Fast computation of the multi-points expected improvement with applications in batch selection, in Learning and Intelligent Optimization, G. Nicosia and P. Pardalos, Editors. 2013, 59-69.
 [^7]: O. Roustant, D. Ginsbourger, and Y. Deville. DiceKriging, DiceOptim: Two R Packages for the Analysis of Computer Experiments by Kriging-Based Metamodeling and Optimization. Journal of Statistical Software, 2012. 51(1): 1-55.
