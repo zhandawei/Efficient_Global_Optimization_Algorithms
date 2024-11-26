@@ -1,4 +1,7 @@
 # A collection of Bayesian Optimization (also known as Efficient Global Optimization) algorithms
+
+
+
 ## Table of Contents
 * [Requirements](#Requirements)
 * [Standard Algorithm](#Standard-algorithm)
@@ -14,23 +17,40 @@
 2. MATLAB 2016b and above.
 
 ## Standard Bayesian Optimization algorithm
-1. **The standard BO algorithm** (*Standard_BO.m*) [^1]. For the Kriging modeling, the Gaussian correlation function is used as the corrlation function and the constant mean is used as the trend function. I refered some codes in the book *Engineering design via surrogate modelling: a practical guide* [^2] for the Kriging model. The MATLAB **fmincon** function is used for maximizing the likehihood function to get the estimated hyperparameters when training the Kriging model. The expected improvement function is maximized by a real-coded genetic algorithm [^3].
+**The standard BO algorithm** (*Standard_BO.m*) [^1].
+ 
+For the Kriging modeling, the Gaussian correlation function is used as the corrlation function and the constant mean is used as the trend function. 
+I refered some codes in the book *Engineering design via surrogate modelling: a practical guide* [^2] for the Kriging model. 
+The MATLAB **fmincon** function is used for maximizing the likehihood function to get the estimated hyperparameters when training the Kriging model. 
+The expected improvement function is maximized by a real-coded genetic algorithm [^3].
 
-## Parallel Bayesian Optimization algorithms
+
+## High-Dimensional Bayesian Optimization Algorithms
+
+
+
+
+## Parallel Bayesian Optimization Algorithms
 1. **The Kriging Believer approach** (*Parallel_KB.m*) [^4].
-2. **The Constant Liar approach** (*Parallel_CL.m*) [^4]. 
-3. **The Peseudo Expected Improvement** (*Parallel_PEI.m*) [^5] .
-4. **The Multipoint Expected Improvement** (*Parallel_qEI.m*) [^6]. The *qEI* function is coded according the R code in [^7].
-5. **The Fast Multipoint Expected Improvement** (*Parallel_FqEI.m*) [^8].
+   
+3. **The Constant Liar approach** (*Parallel_CL.m*) [^4].
+4. 
+5. **The Peseudo Expected Improvement** (*Parallel_PEI.m*) [^5] .
+6. 
+7. **The Multipoint Expected Improvement** (*Parallel_qEI.m*) [^6].
+8. The *qEI* function is coded according the R code in [^7].
+9. 
+10. **The Fast Multipoint Expected Improvement** (*Parallel_FqEI.m*) [^8].
+11. 
 
-## Multiobjective Bayesian Optimization algorithms
+## Multiobjective Bayesian Optimization Algorithms
 1. **The ParEGO (Pareto EGO)** (*Multiobjective_ParEGO.m*) [^9].
 2. **The Expected Improvement Matrix** (*Multiobjective_EIM_Euclidean.m*,*Multiobjective_EIM_Hypervolume.m*,*Multiobjective_EIM_Maximin.m*) [^10].
 3. **The Expected Hypervolume Improvement** (*Multiobjective_EHVI.m*)[^11]. The *EHVI* criterion is calculated using Monte Carlo approximation.
 4. **The MOEA/D-EGO** (*Multiobjective_MOEAD_EGO.m*)[^12]. We use all the samples to train the Kriging models instead of using the fuzzy clusting based modeling method used in the original work[^12].
 
 
-## Constrained Bayesian Optimization algorithms
+## Constrained Bayesian Optimization Algorithms
 1. **The Constrained Expected Improvemment** (*Constrained_CEI.m*) [^13].
 2. **The Pseudo Constrained Expected Improvement** (*Constrained_PCEI.m*) [^14].
 
