@@ -114,7 +114,7 @@ end
 
 
 function [L, DMC, P, D] = modchol_ldlt(A,delta)
-%modchol_ldlt  Modified Cholesky algorithm based on LDL' factorization.
+% modchol_ldlt  Modified Cholesky algorithm based on LDL' factorization.
 %   [L D,P,D0] = modchol_ldlt(A,delta) computes a modified
 %   Cholesky factorization P*(A + E)*P' = L*D*L', where
 %   P is a permutation matrix, L is unit lower triangular,

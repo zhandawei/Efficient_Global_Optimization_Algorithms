@@ -1,18 +1,29 @@
+%--------------------------------------------------------------------------
+% This is the constant liar approach which always use the current minimum
+% objective value as the fake objective to update the GP model to produce
+% multiple query points for parallel function evaluations. It is coded
+% based on the following work.
+% Reference: 
+% D. Ginsbourger, R. Le Riche, and L. Carraro. Kriging is
+% well-suited to parallelize optimization. Computational intelligence in
+% expensive optimization problems. 2010, 131-162.
+% Author: Dawei Zhan
+% Date:   2024.11.27
+%--------------------------------------------------------------------------
 clearvars; close all;
-
 % setting of the problem
-fun_name = 'Fun_Rosenbrock';
+fun_name = 'Rosenbrock';
 num_vari = 10;
 lower_bound = -2.048*ones(1,num_vari);
 upper_bound = 2.048*ones(1,num_vari);
 % the number of initial design points
 num_initial = 20;
 % maximum number of evaluations
-max_evaluation = 100;
-% the number of points selected in each iteration
-num_q = 2;
+max_evaluation = 120;
+% batch size
+num_q = 4;
 % initial design points using Latin hypercube sampling method
-sample_x = lower_bound + (upper_bound-lower_bound).*lhsdesign(num_initial,num_vari,'criterion','maximin','iterations',1000);
+sample_x = lhsdesign(num_initial,num_vari,'criterion','maximin','iterations',1000).*(upper_bound-lower_bound) + lower_bound;
 sample_y = feval(fun_name,sample_x);
 % the current iteration and evaluation
 evaluation = size(sample_x,1);
@@ -23,7 +34,7 @@ fmin = min(sample_y);
 fprintf('Constant Liar on %d-D %s function, iteration: %d, evaluation: %d, current best solution: %f\n',num_vari,fun_name,iteration,evaluation,fmin);
 % iterations
 while evaluation < max_evaluation
-    % build (or rebuild) the Kriging model
+    % build the Kriging model
     kriging_model = Kriging_Train(sample_x,sample_y,lower_bound,upper_bound,1*ones(1,num_vari),0.001*ones(1,num_vari),1000*ones(1,num_vari));
     % maximize the EI function
     infill_x = zeros(num_q,num_vari);
@@ -32,12 +43,12 @@ while evaluation < max_evaluation
         % use fmin as the fake objective
         kriging_model = Kriging_Train([sample_x;infill_x(1:ii,:)],[sample_y;fmin*ones(ii,1)],lower_bound,upper_bound,kriging_model.theta);
     end
-    % evaluating the query points with the real function
+    % evaluate the query points with the real function
     infill_y = feval(fun_name,infill_x);
     % add the new points to design set
     sample_x = [sample_x;infill_x];
     sample_y = [sample_y;infill_y];
-    % updating some parameters
+    % update some parameters
     evaluation = size(sample_x,1);
     iteration = iteration + 1;
     fmin = min(sample_y);

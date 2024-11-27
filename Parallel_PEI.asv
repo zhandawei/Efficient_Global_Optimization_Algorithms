@@ -2,13 +2,13 @@
 % This is the pseudo expected improvement approach which uses an influence
 % function to simulate the sequential EI's selection behavior. It is coded
 % based on the following work.
-% Reference: 
-% D. Zhan, J. Qian, and Y. Cheng. Pseudo expected improvement
+% reference: D. Zhan, J. Qian, and Y. Cheng. Pseudo expected improvement
 % criterion for parallel EGO algorithm. Journal of Global Optimization,
 % 2017, 68(3): 641-662.
-% Author: Dawei Zhan.
-% Date:   2024.11.27
-%--------------------------------------------------------------------------
+% author: Dawei Zhan.
+% date:   2024.11.27
+
+D. Zhan, J. Qian, and Y. Cheng, "Pseudo expected improvement criterion for parallel EGO algorithm," Journal of Global Optimization, vol. 68, pp. 641-662, 2017.
 clearvars; close all;
 % setting of the problem
 fun_name = 'Rosenbrock';
@@ -18,11 +18,11 @@ upper_bound = 2.048*ones(1,num_vari);
 % the number of initial design points
 num_initial = 20;
 % maximum number of evaluations
-max_evaluation = 120;
+max_evaluation = 100;
 % the number of points selected in each iteration
-num_q = 4;
+num_q = 2;
 % initial design points using Latin hypercube sampling method
-sample_x = lhsdesign(num_initial,num_vari,'criterion','maximin','iterations',1000).*(upper_bound-lower_bound) + lower_bound;
+sample_x = repmat(lower_bound,num_initial,1) + repmat(upper_bound-lower_bound,num_initial,1).*lhsdesign(num_initial,num_vari,'criterion','maximin','iterations',1000);
 sample_y = feval(fun_name,sample_x);
 % the current iteration and evaluation
 evaluation = size(sample_x,1);
@@ -43,12 +43,12 @@ while evaluation < max_evaluation
         % update point_added
         point_added = infill_x(1:ii,:);
     end
-    % evaluate the query points with the real function 
+    % evaluating the query points with the real function 
     best_y = feval(fun_name,infill_x);
     % add the new points to design set
     sample_x = [sample_x;infill_x];
     sample_y = [sample_y;best_y];
-    % update some parameters
+    % updating some parameters
     evaluation = size(sample_x,1);
     iteration = iteration + 1;
     fmin = min(sample_y);
