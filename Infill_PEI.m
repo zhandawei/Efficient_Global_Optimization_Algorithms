@@ -1,4 +1,4 @@
-function obj = Infill_Pseudo_EI(x,kriging_model,fmin,point_added)
+function obj = Infill_PEI(x,kriging_model,fmin,point_added)
 % the pseudo EI criterion
 % get the Kriging prediction and variance
 [u,s] = Kriging_Predictor(x,kriging_model);

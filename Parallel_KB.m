@@ -19,22 +19,19 @@ iteration = 0;
 % the current best solution
 fmin = min(sample_y);
 % print the current information to the screen
-fprintf('KB on %d-D %s function, iteration: %d, evaluation: %d, current best solution: %f\n',num_vari,fun_name,iteration,evaluation,fmin);
+fprintf('Kriging Believer on %d-D %s function, iteration: %d, evaluation: %d, current best solution: %f\n',num_vari,fun_name,iteration,evaluation,fmin);
 % the iteration
 while evaluation < max_evaluation
-    % build (or rebuild) the initial Kriging model
     kriging_model = Kriging_Train(sample_x,sample_y,lower_bound,upper_bound,1*ones(1,num_vari),0.001*ones(1,num_vari),1000*ones(1,num_vari));
-    % maximize the qEI function
     infill_x = zeros(num_q,num_vari);
     for ii = 1: num_q
-        % the Expected Improvement criterion
         [infill_x(ii,:),max_EI] = Optimizer_GA(@(x)-Infill_EI(x,kriging_model,fmin),num_vari,lower_bound,upper_bound,num_vari,100);
-        % use kriging prediction as the real objective
+        % use kriging prediction as the fake objective
         kriging_model = Kriging_Train([sample_x;infill_x(1:ii,:)],[sample_y;Kriging_Predictor(infill_x(1:ii,:),kriging_model)],lower_bound,upper_bound,kriging_model.theta);
     end
-    % evaluating the candidates with the real function
+    % evaluating the query points with the real function
     infill_y = feval(fun_name,infill_x);
-    % add the new point to design set
+    % add the new points to design set
     sample_x = [sample_x;infill_x];
     sample_y = [sample_y;infill_y];
     % updating some parameters
@@ -42,7 +39,7 @@ while evaluation < max_evaluation
     iteration = iteration + 1;
     fmin = min(sample_y);
     % print the current information to the screen
-    fprintf('KB on %d-D %s function, iteration: %d, evaluation: %d, current best solution: %f\n',num_vari,fun_name,iteration,evaluation,fmin);
+    fprintf('Kriging Believer on %d-D %s function, iteration: %d, evaluation: %d, current best solution: %f\n',num_vari,fun_name,iteration,evaluation,fmin);
 end
 
 

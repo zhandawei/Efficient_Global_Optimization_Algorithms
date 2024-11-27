@@ -19,24 +19,22 @@ iteration = 0;
 % the current best solution
 fmin = min(sample_y);
 % print the current information to the screen
-fprintf('EGO-PEI on %d-D %s function, iteration: %d, evaluation: %d, current best solution: %f\n',num_vari,fun_name,iteration,evaluation,fmin);
+fprintf('Pseuso EI on %d-D %s function, iteration: %d, evaluation: %d, current best solution: %f\n',num_vari,fun_name,iteration,evaluation,fmin);
 % the iteration
 while evaluation < max_evaluation 
-    % build (or rebuild) the initial Kriging model
+    % build the Kriging model
     kriging_model = Kriging_Train(sample_x,sample_y,lower_bound,upper_bound,1*ones(1,num_vari),0.001*ones(1,num_vari),1000*ones(1,num_vari));
-    % initialize the candidate points and other parameters
     infill_x = zeros(num_q,num_vari);
     point_added = [];
-    % find the candidates based on pseudo EI criterion
     for ii = 1: num_q
         % find the point with the highest pseudo EI value using GA algorithm
-        infill_x(ii,:) = Optimizer_GA(@(x)-Infill_Pseudo_EI(x,kriging_model,fmin,point_added),num_vari,lower_bound,upper_bound,50,100);
+        infill_x(ii,:) = Optimizer_GA(@(x)-Infill_PEI(x,kriging_model,fmin,point_added),num_vari,lower_bound,upper_bound,50,100);
         % update point_added
         point_added = infill_x(1:ii,:);
     end
-    % evaluating the candidate with the real function 
+    % evaluating the query points with the real function 
     best_y = feval(fun_name,infill_x);
-    % add the new point to design set
+    % add the new points to design set
     sample_x = [sample_x;infill_x];
     sample_y = [sample_y;best_y];
     % updating some parameters
@@ -44,7 +42,7 @@ while evaluation < max_evaluation
     iteration = iteration + 1;
     fmin = min(sample_y);
     % print the current information to the screen
-    fprintf('EGO-PEI on %d-D %s function, iteration: %d, evaluation: %d, current best solution: %f\n',num_vari,fun_name,iteration,evaluation,fmin);
+    fprintf('Pseuso EI on %d-D %s function, iteration: %d, evaluation: %d, current best solution: %f\n',num_vari,fun_name,iteration,evaluation,fmin);
 end
 
 
