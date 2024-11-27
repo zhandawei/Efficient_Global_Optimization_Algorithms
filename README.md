@@ -17,31 +17,27 @@ Bayesian Optimization (BO) algorithms, also known as Efficient Global Optimizati
 2. **MATLAB 2016b and above**. I used a lot of ```.*``` to multiply vector and matrix. This multiplication uses implicit expansion, which was introduced in MATLAB 2016b.
 
 ## Standard Bayesian Optimization algorithm
-**The standard BO algorithm**[^1] ```Standard_BO.m``` .
- 
-For the Kriging modeling, the Gaussian correlation function is used as the corrlation function and the constant mean is used as the trend function. 
+**The standard BO algorithm**[^1] ```Standard_BO.m```. For the Kriging modeling, the Gaussian correlation function is used as the corrlation function and the constant mean is used as the trend function. 
 I refered some codes in the book *Engineering design via surrogate modelling: a practical guide* [^2] for the Kriging model. 
 The MATLAB ```fmincon``` function is used for maximizing the likehihood function to get the estimated hyperparameters when training the Kriging model. 
 The expected improvement function is maximized by a real-coded genetic algorithm [^3].
 
 
 ## High-Dimensional Bayesian Optimization Algorithms
-1. **The Dropout Approach**[^4] ```HD_Dropout.m``` 
+**The Dropout Approach**[^4] ```HD_Dropout.m``` 
 
 
 
 ## Parallel Bayesian Optimization Algorithms
-1. **The Kriging Believer Approach**[^4] ```Parallel_KB.m```
-   
-3. **The Constant Liar Approach**[^4] ```Parallel_CL.m```
+**The Kriging Believer Approach**[^4] ```Parallel_KB.m```. The Kriging believer approach  always uses the Kriging prediction value as the fake objective to update the GP model to produce multiple query points for parallel function evaluations.
+ 
+**The Constant Liar Approach**[^4] ```Parallel_CL.m```. The constant liar approach always uses the current minimum objective value as the fake objective to update the GP model to produce multiple query points for parallel function evaluations.
 
-   
-5. **The Peseudo Expected Improvement**[^5] ```Parallel_PEI.m```  
-   
-7. **The Multipoint Expected Improvement**[^6] ```Parallel_qEI.m``` 
-   The *qEI* function is coded according the R code in [^7].
-   
-10. **The Fast Multipoint Expected Improvement**[^8] ```Parallel_FqEI.m``` 
+**The Peseudo Expected Improvement**[^5] ```Parallel_PEI.m```. The pseudo expected improvement approach uses an influence function to simulate the sequential EI's selection behavior. It uses the influence function to update the EI function to prduce multiple query points.
+
+**The Multipoint Expected Improvement**[^6] ```Parallel_qEI.m```.  The qEI function is coded according to the R code in [^7]. I used the Modified Cholesky algorithm [^8] and a quasi-random approach to estimate  an MVN probability [^9] in the qEI implementation.
+
+**The Fast Multipoint Expected Improvement**[^10] ```Parallel_FqEI.m```. The FqEI criterion has very similar properties as the qEI, but is significantly faster than qEI. Therefore, it can be used for large batch size. 
     
 
 ## Multiobjective Bayesian Optimization Algorithms
@@ -64,10 +60,12 @@ The expected improvement function is maximized by a real-coded genetic algorithm
 [^5]:  D. Zhan, J. Qian, and Y. Cheng. Pseudo expected improvement criterion for parallel EGO algorithm. Journal of Global Optimization, 2017. 68(3):  641-662.
 [^6]:  C. Chevalier, and D. Ginsbourger. Fast computation of the multi-points expected improvement with applications in batch selection, in Learning and Intelligent Optimization, G. Nicosia and P. Pardalos, Editors. 2013, 59-69.
 [^7]: O. Roustant, D. Ginsbourger, and Y. Deville. DiceKriging, DiceOptim: Two R Packages for the Analysis of Computer Experiments by Kriging-Based Metamodeling and Optimization. Journal of Statistical Software, 2012. 51(1): 1-55.
-[^8]: D. Zhan, Y. Meng and H. Xing. A fast multi-point expected improvement for parallel expensive optimization. IEEE Transactions on Evolutionary Computation, 2022, doi: 10.1109/TEVC.2022.3168060.
-[^9]: J. Knowles. ParEGO: A hybrid algorithm with on-line landscape approximation for expensive multiobjective optimization problems. IEEE Transactions on Evolutionary Computation, 2006. 10(1): 50-66.
-[^10]: D. Zhan, Y. Cheng, and J. Liu. Expected improvement matrix-based infill criteria for expensive multiobjective optimization. IEEE Transactions on Evolutionary Computation, 2017. 21(6): 956-975.
-[^11]: M. T. M. Emmerich, K. C. Giannakoglou, and B. Naujoks. Single- and multiobjective evolutionary optimization assisted by Gaussian random field metamodels. IEEE Transactions on Evolutionary Computation, 2006, 10(4): 421-439.
-[^12]: Q. Zhang, W. Liu, E. Tsang, and B. Virginas. Expensive Multiobjective Optimization by MOEA/D With Gaussian Process Model. IEEE Transactions on Evolutionary Computation, 2010, 14(3): 456-474.
-[^13]:  M. Schonlau. Computer experiments and global optimization. 1997, University of Waterloo.
-[^14]: J. Qian, Y. Cheng, J. zhang, J. Liu, and D. Zhan. A parallel constrained efficient global optimization algorithm for expensive constrained optimization problems. Engineering Optimization, 2021. 53(2): 300-320.
+[^8]: S. H. Cheng and N. J. Higham. A modified Cholesky algorithm based on a symmetric indefinite factorization. SIAM J. Matrix Anal. Appl., 19(4):1097-1110, 1998. https://github.com/higham/modified-cholesky.
+[^9]: Alan Genz. Numerical Computation of Multivariate Normal Probabilities. J. of Computational and Graphical Stat., 1992 1: 141-149.
+[^10]: D. Zhan, Y. Meng and H. Xing. A fast multi-point expected improvement for parallel expensive optimization. IEEE Transactions on Evolutionary Computation, 2023, 27(1): 170:184.
+[^11]: J. Knowles. ParEGO: A hybrid algorithm with on-line landscape approximation for expensive multiobjective optimization problems. IEEE Transactions on Evolutionary Computation, 2006. 10(1): 50-66.
+[^12]: D. Zhan, Y. Cheng, and J. Liu. Expected improvement matrix-based infill criteria for expensive multiobjective optimization. IEEE Transactions on Evolutionary Computation, 2017. 21(6): 956-975.
+[^13]: M. T. M. Emmerich, K. C. Giannakoglou, and B. Naujoks. Single- and multiobjective evolutionary optimization assisted by Gaussian random field metamodels. IEEE Transactions on Evolutionary Computation, 2006, 10(4): 421-439.
+[^14]: Q. Zhang, W. Liu, E. Tsang, and B. Virginas. Expensive Multiobjective Optimization by MOEA/D With Gaussian Process Model. IEEE Transactions on Evolutionary Computation, 2010, 14(3): 456-474.
+[^15]:  M. Schonlau. Computer experiments and global optimization. 1997, University of Waterloo.
+[^16]: J. Qian, Y. Cheng, J. zhang, J. Liu, and D. Zhan. A parallel constrained efficient global optimization algorithm for expensive constrained optimization problems. Engineering Optimization, 2021. 53(2): 300-320.
